@@ -36,16 +36,19 @@ $(()=>{
                 console.log("data is: ");
                 console.log(data);
 
-                const arrSynsAdj1 = data[0].meta.syns[0];
-                console.log("arrSyns is: ");
-                console.log(arrSynsAdj1);
+                console.log(typeof(data));
+                console.log(`type of thing returned is: ${typeof(data[0])}`);
+
+                // const arrSynsAdj1 = data[0].meta.syns[0];
+                // console.log("arrSyns is: ");
+                // console.log(arrSynsAdj1);
 
 
 
-                const randIndex = Math.floor(Math.random() * arrSynsAdj1.length);
-                console.log(`randIndex is: ${randIndex}`);
-
-                console.log(`random word from arr is ${arrSynsAdj1[randIndex]}`);
+                // const randIndex = Math.floor(Math.random() * arrSynsAdj1.length);
+                // console.log(`randIndex is: ${randIndex}`);
+                //
+                // console.log(`random word from arr is ${arrSynsAdj1[randIndex]}`);
             }
         )
 
