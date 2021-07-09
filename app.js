@@ -69,6 +69,7 @@ const ajaxCaller2 = ($form) =>{
         })
 }
 
+//checks against empty input, invalid (non-word) input
 const inputHandler = (ajaxObj) =>{
         let selectedWord = "";
 
@@ -92,6 +93,12 @@ const inputHandler = (ajaxObj) =>{
         return selectedWord;
 }
 
+
+
+const addModal = (strBandName) =>{
+
+}
+
 $(()=>{
     // let $h1 = $("<h1>").text("asah world").appendTo("body");
 
@@ -110,7 +117,7 @@ $(()=>{
 
         const $bandName = "";
 
-        console.log($checkboxStatus);
+        console.log(`checkbox status is: ${$checkboxStatus}`);
         console.log($formAdj1);
         console.log($formAdj2);
         console.log($formNoun1);
@@ -193,10 +200,14 @@ $(()=>{
         // console.log(`OUTSIDE ajax request, randNoun1 is : ${randNoun1}`);
 
 
+        let $modal = $(".modal");
+        // $modal.hide();
 
-
-        //waiting until AFTER ajax request have been done for adj1, adj2, and noun1
+        //waiting until AFTER ajax requests are been done for adj1, adj2, and noun1
         $.when(ajaxCaller2($formAdj1), ajaxCaller2($formAdj2), ajaxCaller2($formNoun1)).done(function(a1, a2, n1){
+
+            $modal.empty();
+            $modal.hide();
 
             // console.log("inside when function");
             // console.log(a1);
@@ -210,17 +221,25 @@ $(()=>{
             randAdj1 = inputHandler(a1);
             // console.log(`randAdj1, after ajax, after input handler, inside when is: ${randAdj1}`);
             // console.log(a1[0][0].meta.syns[0][0]);
-
-
             randAdj2 = inputHandler(a2);
             randNoun1 = inputHandler(n1);
 
 
+            //create band name string
             randBandName = `${randAdj1} ${randAdj2} ${randNoun1}`;
 
+            //adding "The"
+            if($checkboxStatus){
+                randBandName = `The ${randBandName}`;
+            }
             console.log(`new band name is: ${randBandName}`);
 
-            let $h12 = $("<h1>").text(`new band name is: ${randBandName}`).appendTo("body");
+
+
+            //edit modal
+            // let $modal = $(".modal");
+            let $bandName = $("<h3>").text(`new band name is: ${randBandName}`).appendTo(".modal");
+            $modal.show()
 
 
 
@@ -229,35 +248,6 @@ $(()=>{
 
 
         })
-
-        // $.when(ajaxCaller($formAdj1), ajaxCaller($formAdj2), ajaxCaller($formNoun1)).done(function(a1, a2, n1){
-        //     let name = `name is: ${a1} ${a2} ${n1}`;
-        //     console.log(name);
-        // })
-
-
-        // $.when(adj1AjaxCaller($formAdj1)).done({
-        //     console.log("after $.when, randAdj1 is");
-        //
-        //     console.log(randAdj1);
-        // });
-
-        // $.when( { testing: 123 } ).done(function( x ) {
-        //     alert( x.testing ); // Alerts "123"
-        // });
-
-
-        // $.when(ajax)
-        // console.log("After first ajax request, band name is:")
-        // console.log(randAdj1);
-
-
-        // console.log(arrSynsAdj1);
-
-
-
-
-
 
 
     })

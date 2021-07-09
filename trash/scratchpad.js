@@ -59,3 +59,49 @@ $.ajax({
     }
 )
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $.when(ajaxCaller($formAdj1), ajaxCaller($formAdj2), ajaxCaller($formNoun1)).done(function(a1, a2, n1){
+//     let name = `name is: ${a1} ${a2} ${n1}`;
+//     console.log(name);
+// })
+
+
+// $.when(adj1AjaxCaller($formAdj1)).done({
+//     console.log("after $.when, randAdj1 is");
+//
+//     console.log(randAdj1);
+// });
+
+// $.when( { testing: 123 } ).done(function( x ) {
+//     alert( x.testing ); // Alerts "123"
+// });
+
+
+// $.when(ajax)
+// console.log("After first ajax request, band name is:")
+// console.log(randAdj1);
+
+
+// console.log(arrSynsAdj1);
