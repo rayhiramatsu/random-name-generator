@@ -241,8 +241,13 @@ $(()=>{
             let $bandName = $("<h3>").text(`new band name is: ${randBandName}`).appendTo(".modal");
             $modal.show()
 
+            $bandName.on("click", (event)=>{
+                $modal.hide();
+            });
 
 
+
+            // $("form").on("submit", (event)=>{
 
 
 
