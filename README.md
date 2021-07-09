@@ -145,6 +145,11 @@ In short, to access the "syns" (synonyms) key, indexing would follow the followi
 ### Case: zxyzxiix, data[0] is undefined
 ### Case: large, data[0] is an object
 
+### Case: empty, data[0][0] is a string
+### Case: asdf, data[0][0] is a string
+### Case: zxyzxiix, data[0] is undefined
+### Case: large, data[0] is an object
+
 
 
 
