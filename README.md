@@ -18,8 +18,45 @@ Merriam-Webster's Collegiate Thesaurus API come with a set of limitations/quirks
 
 #### Word: "Large"
 
+'[
+    {
+        "meta": {
+            "metadata irrelevant to project here"
+            },
+            "syns": [
+                ["big", "biggish", "boxcar"],
+                ["big","crowd-pleasing","du jour"]
+            ],
+            "ants": [
+                ["bantam","dinky","dwarf"],
+                ["out","unfashionable", "unpopular"]
+            ],
+            "offensive": false
+        },
+    },
+    {
+        // ...more random objects here
+    }
+]'
 
-'
+
+In short, to access the "syns" (synonyms) key, indexing would follow the following format:
+
+`data[0].meta.syns[0][index]`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [
     {
         "meta": {
@@ -31,7 +68,6 @@ Merriam-Webster's Collegiate Thesaurus API come with a set of limitations/quirks
                 "tuuid": "90e9a6d5-c2fc-405c-8a45-31b2ee5f4a1b",
                 "tsrc": "collegiate"
             },
-
             "syns": [
                 [
                     "big",
@@ -99,10 +135,18 @@ Merriam-Webster's Collegiate Thesaurus API come with a set of limitations/quirks
             "hw": "large"
         },
         "fl": "adjective",
-        "shortdef": [
-            "of a size greater than average of its kind",
-            "enjoying widespread favor or approval"
-        ]
+    },
+    {
+        // ...more random objects here
     }
 ]
-'
+
+### Case: asdf, data[0] is a string
+### Case: zxyzxiix, data[0] is undefined
+### Case: large, data[0] is an object
+
+
+
+
+###: IF typeof data[0] === undefined, API is failing to
+###: IF typeof data[0] === string, API is retrieving suggested words

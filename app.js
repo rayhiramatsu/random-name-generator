@@ -39,6 +39,9 @@ $(()=>{
                 console.log(typeof(data));
                 console.log(`type of thing returned is: ${typeof(data[0])}`);
 
+                console.log(`first string in syns is: ${data[0].meta.syns[0][0]}`);
+                console.log("TEST FIRE!");
+
                 // const arrSynsAdj1 = data[0].meta.syns[0];
                 // console.log("arrSyns is: ");
                 // console.log(arrSynsAdj1);
