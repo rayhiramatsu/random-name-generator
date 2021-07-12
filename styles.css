@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 *{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* background-image: url(); */
-    font-family: "Inter", Monaco, sans-serif;
+    font-family: "Source Code Pro", Monaco, serif;
+    border-radius: 5px;
 }
 
 header{
@@ -16,17 +19,34 @@ header h1{
     top: 23%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3vw;
+    font-size: 4vw;
+
+    font-family: "Reenie Beanie", Monaco, sans-serif;
+    text-shadow: 3px 3px 5px black;
+
+
 }
 header img{
-    width: 100%;
+    width: 50%;
     /* text-align: center; */
     /* justify-content: center; */
     display: block;
+
+    margin: auto;
     /* margin-left: auto; */
     /* margin-right: auto; */
 
+    box-shadow: 0px 0px 15px 10px lightskyblue;
+    border-radius: 10px;
 
+
+}
+/*////////////////////////////////////////////////////////////////////////////*/
+/* prompt */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+.prompt{
+    color: yellow;
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -40,7 +60,14 @@ body{
     margin-right: 1px;
     background-color: silver;
     /* background: url("images/pexels_background.jpg"); */
-    /* background-size: cover; */
+    /* background: url("images/neon_hallway.jpg"); */
+    background: url("images/neon_city_street.jpg");
+    /* background: url("images/question_mark.jpg"); */
+
+    background-size: auto;
+
+
+    background-size: cover;
 
 
     /* for modal */
@@ -69,6 +96,8 @@ form{
     display: flex;
     justify-content: space-evenly;
     /* flex-wrap: wrap; */
+    /* color: red; */
+
 }
 
 @media (max-width: 930px){
@@ -83,7 +112,10 @@ form{
 
 
 .first3btn{
-    background-color: blue;
+    background-color: lightskyblue;
+    color: black;
+    font-family: "Source Code Pro", Monaco, serif;
+
     font-size: 20px;
     max-width: 300px;
     text-align: center;
@@ -96,9 +128,16 @@ form{
 
     padding-top: 5px;
     padding-bottom: 5px;
+
+
+    box-shadow: 0px 0px 15px 10px lightskyblue;
+}
+.first3btn::placeholder{
+    font-family: "Source Code Pro", Monaco, serif;
+    color: midnightblue;
 }
 .first3btn:hover{
-    background-color: yellow;
+    background-color: lightsteelblue;
 }
 
 
@@ -126,14 +165,16 @@ form label{
 }
 
 .submit{
-    background-color: green;
+    background-color: maroon;
     text-align: center;
 
     font-size: 20px;
     /* justify-content: center; */
     /* margin: auto; */
 }
-
+.submit:hover{
+    background-color: darkred;
+}
 
 /*////////////////////////////////////////////////////////////////////////////*/
 /* modal */
@@ -163,6 +204,38 @@ form label{
 .modalClose{
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*////////////////////////////////////////////////////////////////////////////*/
+/* footer */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+footer{
+
+}
+
+footer p{
+    color: yellow;
+}
+
+
+
+
+
+
+
 
 /* .first3{
     display: flex;
