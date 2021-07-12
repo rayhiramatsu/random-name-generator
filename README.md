@@ -69,7 +69,12 @@ Aside from the webpage having CSS styling yet lacking "style" (it doesn't look a
 <https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css>
 
 
-## Image and Video Sources:
+## Media Sources:
+
+### Fonts:
+
+Reenie Beanie: <https://fonts.google.com/specimen/Reenie+Beanie?query=reenie>  
+Source Code Pro: <https://fonts.google.com/specimen/Source+Code+Pro?query=source+>
 
 ### Images:
 
