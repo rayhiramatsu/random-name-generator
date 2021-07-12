@@ -3,28 +3,79 @@
     <head>
         <meta charset="utf-8">
         <title>Band Name Generator</title>
-
         <link rel="stylesheet" href="styles.css">
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="app.js" charset="utf-8"></script>
     </head>
     <body>
         <header>
-            <h1>Band Name Generator</h1>
+            <img src="images/casette_banner.jpg" alt="casette_tape_img">
+            <h1 class="title">Band Name Generator</h1>
         </header>
-        <form>
-            <span>Include "The"?</span>
-            <input type="checkbox" class="chkbox"/>
-            <label for="chkbox">Include "The"?</label>
-            <input type="text" class="adjective1" placeholder="First Adjective" />
-            <input type="text" class="adjective2" placeholder="Second Adjective" />
-            <input type="text" class="noun1" placeholder="Noun" />
-            <input type="submit" class="submit" value="Generate!" id="BROOKLYN"/>
-        </form>
 
-        <div id="myModal" class="modal">
-            <p>here's some hardcoded text</p>
+        <div class="prompt">
+            <p>add some instructions here</p>
         </div>
+
+        <div class="container">
+            <form>
+
+
+            <!-- <br> -->
+            <!-- <div class="first3container"> -->
+                <div class="first3">
+                    <input type="text" class="adjective1 first3btn" placeholder="First Adjective" />
+                    <!-- <br> -->
+                    <input type="text" class="adjective2 first3btn" placeholder="Second Adjective" />
+                    <!-- <br> -->
+                    <input type="text" class="noun1 first3btn" placeholder="Noun" />
+                    <!-- <br> -->
+                </div>
+            <!-- </div> -->
+
+
+
+                <br>
+
+                <div class="optional-forms">
+                    <label for="chkbox">Include "The"?</label>
+                    <input type="checkbox" class="chkbox"/>
+
+                    <label for="chkbox-plural">Pluralize?</label>
+                    <input type="checkbox" class="chkbox-plural"/>
+                </div>
+
+                <br>
+
+
+                <div class="submitter">
+                    <input type="submit" class="submit" value="Generate!" id="blah"/>
+                </div>
+
+            </form>
+
+
+        </div>
+        <div id="myModal" class="modal">
+            <p>random text here</p>
+            <button class="modalClose"></button>
+        </div>
+
+        <!-- <iframe width="448" height="252" src="https://www.youtube.com/embed/qSZUaCNX_ZA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+        <!-- <div class='some-page-wrapper'>
+          <div class='row'>
+            <div class='column'>
+              <div class='blue-column'>
+                Some Text in Column One
+              </div>
+            </div>
+            <div class='column'>
+              <div class='green-column'>
+                Some Text in Column Two
+              </div>
+            </div>
+          </div>
+        </div> -->
     </body>
 </html>
