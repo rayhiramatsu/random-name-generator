@@ -1,21 +1,37 @@
-# random-name-generator
+# Band Name Generator
+
+Netlify Webpage: <https://hungry-easley-599ee0.netlify.app/>
 
 
-## Notes:
+## Website Description:
 
-Merriam-Webster's Collegiate Thesaurus API come with a set of limitations/quirks I've noticed:  
+Band Name Generator, as the name implies, allows the user to randomly generate a band name.
 
-- the API only allows for a ***single*** and ***explicit*** search term, i.e., you *must* include some kind of search term/word
-- when searching, returned object can manifest in a few ways (in no particular order):
+The website prompts the user to enter text in 3 fields, prompting for two adjectives and one noun. The form also includes two optional checkboxes, one to prepend the band name with "The", and the other to pluralize the last word (noun).
+
+
+## Technologies Used:
+
+In order to randomly generate these words, the [Merriam-Webster API](https://dictionaryapi.com/products/api-collegiate-thesaurus) is used. Request calls to the API take the user input as the search term, and if there is a match, returns a JSON object that, among other things, includes a list of synonyms. From there, the website randomly selects a synonym using Javascript's Math.Random method.
+
+In addition, a Youtube video player is embedded in the response modal (from a preselected list of videos).
+
+## Notes, Challenges:
+
+Merriam-Webster's APIs come with one glaring limitation: the API only allows for a ***single*** and ***explicit*** search term, i.e., a word of some kind *must* be included. As a result, my initial plan of randomly selecting *any adjective* or *any noun* was not possible. The textbox forms were necessarily used in order make any kind of request call to the API.
+
+
+
+In addition, input handling by the API manifests in three distinct ways:
 
 1. Valid input (an actual word that has and/or the thesaurus has a record of synonyms)
 2. Invalid input- when search term is gibberish (not a word at all, e.g. xzyylix)
-3. Invalid input- is a word, but doesn't have synonyms in records
+3. Invalid input- is not a word, but appears similar to one (e.g. asdf)
 
+
+Each case produces a differently structured JSON object, and so in order to prevent accessing a non-existent element, a `typeof()` check was included at one level above the desired *syns* object:
 
 ### Case: Valid Input
-
-
 #### Word: "Large"
 
 '[
@@ -32,7 +48,6 @@ Merriam-Webster's Collegiate Thesaurus API come with a set of limitations/quirks
                 ["out","unfashionable", "unpopular"]
             ],
             "offensive": false
-        },
     },
     {
         // ...more random objects here
@@ -43,115 +58,3 @@ Merriam-Webster's Collegiate Thesaurus API come with a set of limitations/quirks
 In short, to access the "syns" (synonyms) key, indexing would follow the following format:
 
 `data[0].meta.syns[0][index]`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[
-    {
-        "meta": {
-            "id": "large",
-            "uuid": "f1801a66-edd4-40a9-aef5-9d78529d77ed",
-            "src": "coll_thes",
-            "section": "alpha",
-            "target": {
-                "tuuid": "90e9a6d5-c2fc-405c-8a45-31b2ee5f4a1b",
-                "tsrc": "collegiate"
-            },
-            "syns": [
-                [
-                    "big",
-                    "biggish",
-                    "boxcar",
-                    "bulky",
-                    "considerable",
-                    "goodly",
-                    "grand",
-                    "great",
-                    "handsome",
-                    "hefty",
-                    "hulking",
-                    "husky",
-                    "largish",
-                    "outsize",
-                    "oversize",
-                    "sizable",
-                    "substantial",
-                    "tidy",
-                    "voluminous"
-                ],
-                [
-                    "big",
-                    "crowd-pleasing",
-                    "du jour",
-                    "faddish",
-                    "faddy",
-                    "fashionable",
-                    "favorite",
-                    "happening",
-                    "hot",
-                    "in",
-                    "modish",
-                    "pop",
-                    "popular",
-                    "popularized",
-                    "red-hot",
-                    "vogue",
-                    "voguish"
-                ]
-            ],
-            "ants": [
-                [
-                    "bantam",
-                    "dinky",
-                    "dwarf",
-                    "dwarfish",
-                    "little",
-                    "puny",
-                    "shrimpy",
-                    "small",
-                    "smallish",
-                    "undersized"
-                ],
-                [
-                    "out",
-                    "unfashionable",
-                    "unpopular"
-                ]
-            ],
-            "offensive": false
-        },
-        "hwi": {
-            "hw": "large"
-        },
-        "fl": "adjective",
-    },
-    {
-        // ...more random objects here
-    }
-]
-
-### Case: asdf, data[0] is a string
-### Case: zxyzxiix, data[0] is undefined
-### Case: large, data[0] is an object
-
-### Case: empty, data[0][0] is a string
-### Case: asdf, data[0][0] is a string
-### Case: zxyzxiix, data[0] is undefined
-### Case: large, data[0] is an object
-
-
-
-
-###: IF typeof data[0] === undefined, API is failing to
-###: IF typeof data[0] === string, API is retrieving suggested words

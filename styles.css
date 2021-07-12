@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 *{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     font-family: "Source Code Pro", Monaco, serif;
     border-radius: 5px;
 }
