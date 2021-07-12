@@ -209,10 +209,47 @@ $(()=>{
             // Setting up the modal //
             //////////////////////////
 
-            //add modal
-            // let $modal = $(".modal");
-            $bandName = $("<p>").text(`${randBandName}`).appendTo(".modal");
-            let $modalClose = $("<button>").text("Close modal").addClass("modalClose").appendTo(".modal");
+
+            //add band name text
+            $bandName = $("<p>").text(`${randBandName}`).addClass("modalBandName").appendTo(".modal");
+
+            //add embedded youtube video
+
+            const youtubeLinks = [
+                "https://www.youtube.com/embed/QZShA_a-5r8",
+                "https://www.youtube.com/embed/qSZUaCNX_ZA",
+                "https://www.youtube.com/embed/DSZx2lM5tHY",
+                "https://www.youtube.com/embed/0jXXWBt5URw",
+                "https://www.youtube.com/embed/tF4xpKobado",
+                "https://www.youtube.com/embed/a70dbulRjx0",
+                "https://www.youtube.com/embed/dXMqlSIQemQ",
+                "https://www.youtube.com/embed/ye9xzzYsA6Y",
+                "https://www.youtube.com/embed/uCK7Gok3u0U"
+            ];
+
+            $youtube = $("<iframe>").attr({
+                width: "448",
+                height: "252",
+                src: `${randWordPicker(youtubeLinks)}`,
+                title: "YouTube video player",
+                frameborder: "0",
+                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                allowfullscreen:true
+            });
+
+            $youtube.appendTo(".modal");
+
+
+
+
+
+
+
+
+
+
+            //add modal close button
+            let $modalClose = $("<button>").text("Close").addClass("modalClose").appendTo(".modal");
             // let $blah = $("<p>").text("blahblahblah").appendTo(".modal");
 
             $modal.show();

@@ -47,8 +47,9 @@ header img{
 
 .prompt{
     color: yellow;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-
 /*////////////////////////////////////////////////////////////////////////////*/
 /* main body */
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -64,14 +65,13 @@ body{
     background: url("images/neon_city_street.jpg");
     /* background: url("images/question_mark.jpg"); */
 
-    background-size: auto;
 
 
     background-size: cover;
 
 
     /* for modal */
-    position: relative;
+    /* position: relative; */
 }
 .container{
     /* display: flex; */
@@ -100,13 +100,7 @@ form{
 
 }
 
-@media (max-width: 930px){
-    .first3{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
+/*  media query was her epreviously */
 
 
 
@@ -151,8 +145,12 @@ form{
 }
 
 form label{
-    background-color: blue;
+    background-color: darkturquoise;
     font-size: 20px;
+    box-shadow: 0px 0px 15px 10px mediumturquoise;
+    border-width: 3px;
+    border-color: black;
+
 }
 
 /*////////////////////////////////////////////////////////////////////////////*/
@@ -162,15 +160,21 @@ form label{
     /* margin: auto; */
     display: flex;
     justify-content: center;
+    margin-top: 100px;
 }
 
 .submit{
     background-color: maroon;
+    color: azure;
     text-align: center;
 
     font-size: 20px;
     /* justify-content: center; */
     /* margin: auto; */
+    padding: 5px 15px 5px 15px;
+
+    box-shadow: 0px 0px 15px 10px firebrick;
+
 }
 .submit:hover{
     background-color: darkred;
@@ -184,25 +188,49 @@ form label{
     /* window attributes */
     display: none;
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    background-color: azure;
 
     min-width: 500px;
     min-height: 500px;
 
+    background-color: rgb(213, 209, 202);
+    box-shadow: 0px 0px 15px 10px firebrick;
 
-    font-size: 20px;
+
+
+
+
+    border-width: 10px;
+    border-color: blue;
+    border-radius: 10px;
+
     text-align: center;
 
+    /* margin: auto; */
 
+}
+
+.modalBandName{
+    font-family: "Reenie Beanie", Monaco, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    text-shadow: 3px 3px 5px black;
+    /* font-weight: 800; */
 
 }
 
 .modalClose{
+    display: block;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin: auto; */
+    text-align: center;
 
+    font-size: 20px;
 }
 
 
@@ -223,11 +251,13 @@ form label{
 /*////////////////////////////////////////////////////////////////////////////*/
 
 footer{
-
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
 footer p{
-    color: yellow;
+    color: black;
 }
 
 
@@ -235,6 +265,21 @@ footer p{
 
 
 
+/*////////////////////////////////////////////////////////////////////////////*/
+/* media query */
+/*////////////////////////////////////////////////////////////////////////////*/
+
+
+@media (max-width: 930px){
+    .first3{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .submitter{
+        margin-top: 50px;
+    }
+}
 
 
 /* .first3{
