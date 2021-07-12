@@ -65,4 +65,5 @@ In short, to access the *syns* (synonyms) key, indexing would follow the followi
 Aside from the webpage having CSS styling yet lacking "style" (it doesn't look all that pretty), input-checkbox html elements are resistant to CSS styling. After all the coloring and images have been added, the checkboxes are tiny and difficult to see and click. Most of what I was able to find online seem to indicate that that preferred method is to create checkbox replacements altogether:
 
 <https://www.w3schools.com/howto/howto_css_custom_checkbox.asp>
+
 <https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css>
