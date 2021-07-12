@@ -2,6 +2,7 @@
 //collegiate thesaurus my API key: 7b7337a7-5b56-4fd4-ae81-be29b4054cf7
 
 
+// returns randomly selected element in array
 const randWordPicker = (arrWords) =>{
     return arrWords[Math.floor(Math.random() * arrWords.length)]
 
@@ -62,28 +63,53 @@ const ajaxCaller = ($form) =>{
     })
 }
 
+
+//returns a random word (adjective or noun) from hardcoded array
+//called when invalid JSON object is returned from API, used in inputHandler
+const wordReturner = (wordType) =>{
+    const hardCodedAdjs = ["cinnabar", "brown", "chocolate", "dormant", "cantankerous",
+                           "slappin'", "aubergine", "aubergine"
+
+                          ];
+
+    const hardCodedNouns = ["bird", "shoe", "bottle", "stan", "gamer", "aubergine",
+                            "aubergine", "aubergine"
+
+                           ];
+    if(wordType === "adj"){
+        return randWordPicker(hardCodedAdjs);
+    }
+    else if(wordType === "noun"){
+        return randWordPicker(hardCodedNouns);
+    }
+    else{
+        console.log("You should never be here. Invalid arg passed in.");
+    }
+}
+
 //checks against empty input, invalid (non-word) input
-const inputHandler = (ajaxObj) =>{
+//if invalid JSON object, checks against wordType "adj", or "noun", calls wordReturner
+const inputHandler = (ajaxObj, wordType) =>{
         let selectedWord = "";
 
         //if JSON object is of correct structure
         if(typeof(ajaxObj[0][0]) === "object"){
-
             const arrSyns =(ajaxObj[0][0].meta.syns[0]);
             // console.log("arrSyns is: ");
             // console.log(arrSynsAdj1);
-
-            // const randIndex = Math.floor(Math.random() * arrSynsAdj1.length);
-            // console.log(`randIndex is: ${randIndex}`);
             selectedWord = randWordPicker(ajaxObj[0][0].meta.syns[0]);
-
-
         }
         else{
             console.log("invalid input for adj1! using default...");
-            selectedWord = "aubergine";
+            selectedWord = wordReturner(wordType);
         }
         console.log(`INSIDE inputHandler, selectedWord is: ${selectedWord}`)
+
+
+        //capitalize first char in word
+        selectedWord = selectedWord.charAt(0).toUpperCase() + selectedWord.slice(1);
+        console.log(`After capitalization, word is: ${selectedWord}`);
+
         return selectedWord;
 }
 
@@ -130,25 +156,27 @@ $(()=>{
 
         //init modal var
         let $modal = $(".modal");
-        // $modal.hide();
+        $modal.hide();
 
         //waiting until AFTER ajax requests are been done for adj1, adj2, and noun1
         $.when(ajaxCaller($formAdj1), ajaxCaller($formAdj2), ajaxCaller($formNoun1)).done(function(a1, a2, n1){
-
             //reinitialize modal,
             $modal.empty();
-            $modal.hide();
+            // $bandName = "";
+            // $modal.hide();
 
             // console.log("inside when function");
             console.log(a1);
             console.log(a2);
             console.log(n1);
 
+            // examine JSON object for validity,
+            // i.e., did API return an object with the "synonyms" array?
+            randAdj1 = inputHandler(a1, "adj");
+            randAdj2 = inputHandler(a2, "adj");
+            randNoun1 = inputHandler(n1, "noun");
 
-            randAdj1 = inputHandler(a1);
-            randAdj2 = inputHandler(a2);
-            randNoun1 = inputHandler(n1);
-
+            //upper case
 
             //create band name string
             randBandName += `${randAdj1} ${randAdj2} ${randNoun1}`;
@@ -175,29 +203,36 @@ $(()=>{
             //add modal, event listeners
             // addModal(randBandName);
 
+
+
+            //////////////////////////
+            // Setting up the modal //
+            //////////////////////////
+
             //add modal
             // let $modal = $(".modal");
             $bandName = $("<p>").text(`${randBandName}`).appendTo(".modal");
-            let $modalClose = $(".modalClose").text("Close modal by clicking here").appendTo(".modal");
+            let $modalClose = $("<button>").text("Close modal").addClass("modalClose").appendTo(".modal");
+            // let $blah = $("<p>").text("blahblahblah").appendTo(".modal");
 
             $modal.show();
 
 
 
-            //modal event listener
-            $bandName.on("click", (event)=>{
+            //event listener, closing modal window
+            $modalClose.on("click", (event)=>{
                 $modal.hide();
+
+
+
+                //clearing form input
+                $(".chkbox").prop("checked", false);
+                $(".adjective1").val("");
+                $(".adjective2").val("");
+                $(".noun1").val("");
+                $(".chkbox-plural").prop("checked", false);
+
             });
-
-
-
-            // $("form").on("submit", (event)=>{
-
-
-
-
         })
-
-
     })
 })

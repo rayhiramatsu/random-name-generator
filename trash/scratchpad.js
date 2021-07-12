@@ -188,3 +188,10 @@ $.ajax({
 //
 // randNoun1 = ajaxCaller($formNoun1);
 // console.log(`OUTSIDE ajax request, randNoun1 is : ${randNoun1}`);
+
+
+
+
+$.ajax({
+    url: `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${$formNoun1}?key=7b7337a7-5b56-4fd4-ae81-be29b4054cf7`
+})
