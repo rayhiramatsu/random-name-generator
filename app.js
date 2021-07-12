@@ -5,58 +5,9 @@
 // returns randomly selected element in array
 const randWordPicker = (arrWords) =>{
     return arrWords[Math.floor(Math.random() * arrWords.length)]
-
-
-
-    // const randIndex = Math.floor(Math.random() * arrSyns.length);
-    // console.log(`randIndex is: ${randIndex}`);
-    // //
-    // console.log(`random word from arr is ${arrSynsAdj1[randIndex]}`);
 }
 
-// Pulls AJAX request to API, returns string for adjective1
-const ajaxCaller2 = ($form) =>{
-
-    //AJAX request for adjective1
-    $.ajax({
-        url: `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${$form}?key=7b7337a7-5b56-4fd4-ae81-be29b4054cf7`
-    }).then(
-        (data)=>{
-            // console.log("data is: ");
-            // console.log(data);
-            //
-            // console.log(typeof(data));
-            // console.log(`type of thing returned is: ${typeof(data[0])}`);
-            //
-            // const blah = typeof(data[0])
-            //
-            // console.log("TEST FIRE!");
-
-            let selectedWord = "";
-
-            if(typeof(data[0]) === "object"){
-
-                const arrSyns = data[0].meta.syns[0];
-                // console.log("arrSyns is: ");
-                // console.log(arrSynsAdj1);
-
-                // const randIndex = Math.floor(Math.random() * arrSynsAdj1.length);
-                // console.log(`randIndex is: ${randIndex}`);
-                selectedWord = randWordPicker(data[0].meta.syns[0]);
-
-
-            }
-            else{
-                console.log("invalid input for adj1! using default...");
-                selectedWord = "aubergine";
-            }
-            console.log(`INSIDE ajax request, selectedWord is: ${selectedWord}`)
-            return selectedWord;
-        }
-    )
-}
-
-
+// Pulls AJAX request to API, returns JSON object
 const ajaxCaller = ($form) =>{
     return $.ajax({
         url: `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${$form}?key=7b7337a7-5b56-4fd4-ae81-be29b4054cf7`
@@ -114,15 +65,6 @@ const inputHandler = (ajaxObj, wordType) =>{
 }
 
 
-const addModal = (strBandName) =>{
-    let $bandName = $("<p>").text(`strBandName`).appendTo(".modal");
-    $modal.show()
-
-    $bandName.on("click", (event)=>{
-        $modal.hide();
-    });
-}
-
 $(()=>{
     $("form").on("submit", (event)=>{
         console.log("button was clicked");
@@ -135,7 +77,6 @@ $(()=>{
         const $formAdj2 = $(".adjective2").val();
         const $formNoun1 = $(".noun1").val();
         const $checkboxPlural = $(".chkbox-plural").is(":checked");
-
 
 
         console.log(`chkbox status is: ${$checkboxThe}`);
@@ -160,12 +101,10 @@ $(()=>{
 
         //waiting until AFTER ajax requests are been done for adj1, adj2, and noun1
         $.when(ajaxCaller($formAdj1), ajaxCaller($formAdj2), ajaxCaller($formNoun1)).done(function(a1, a2, n1){
-            //reinitialize modal,
+            //reinitialize modal
             $modal.empty();
-            // $bandName = "";
-            // $modal.hide();
 
-            // console.log("inside when function");
+
             console.log(a1);
             console.log(a2);
             console.log(n1);
@@ -176,8 +115,6 @@ $(()=>{
             randAdj2 = inputHandler(a2, "adj");
             randNoun1 = inputHandler(n1, "noun");
 
-            //upper case
-
             //create band name string
             randBandName += `${randAdj1} ${randAdj2} ${randNoun1}`;
 
@@ -187,34 +124,23 @@ $(()=>{
                 console.log(`band name, after "The": ${randBandName}`);
             }
 
-
             //pluralize noun
             if($checkboxPlural){
-                //do something here to pluralize noun.
-
                 //super basic pluralizer, add 'S'
                 randBandName = `${randBandName}s`;
                 console.log(`band name, after pluralize: ${randBandName}`);
             }
-
             console.log(`band name, final: ${randBandName}`);
-
-
-            //add modal, event listeners
-            // addModal(randBandName);
-
 
 
             //////////////////////////
             // Setting up the modal //
             //////////////////////////
 
-
             //add band name text
             $bandName = $("<p>").text(`${randBandName}`).addClass("modalBandName").appendTo(".modal");
 
             //add embedded youtube video
-
             const youtubeLinks = [
                 "https://www.youtube.com/embed/QZShA_a-5r8",
                 "https://www.youtube.com/embed/qSZUaCNX_ZA",
@@ -239,28 +165,14 @@ $(()=>{
 
             $youtube.appendTo(".modal");
 
-
-
-
-
-
-
-
-
-
             //add modal close button
             let $modalClose = $("<button>").text("Close").addClass("modalClose").appendTo(".modal");
-            // let $blah = $("<p>").text("blahblahblah").appendTo(".modal");
-
             $modal.show();
-
 
 
             //event listener, closing modal window
             $modalClose.on("click", (event)=>{
                 $modal.hide();
-
-
 
                 //clearing form input
                 $(".chkbox").prop("checked", false);
@@ -268,7 +180,6 @@ $(()=>{
                 $(".adjective2").val("");
                 $(".noun1").val("");
                 $(".chkbox-plural").prop("checked", false);
-
             });
         })
     })
