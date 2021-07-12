@@ -18,7 +18,7 @@ In addition, a Youtube video player is embedded in the response modal (from a pr
 
 ## Notes, Challenges:
 
-Merriam-Webster's APIs come with one glaring limitation: the API only allows for a ***single*** and ***explicit*** search term, i.e., a word of some kind *must* be included. As a result, my initial plan of randomly selecting *any adjective* or *any noun* was not possible. The textbox forms were necessarily used in order make any kind of request call to the API.
+Merriam-Webster's APIs come with one glaring limitation: the API only allows for a ***single*** and ***explicit*** search term, i.e., a word of some kind *must* be included. As a result, my initial plan of randomly selecting *any adjective* or *any noun* from the entire thesaurus proper was not possible. The textbox forms were necessarily used in order make any kind of request call to the API.
 
 
 
@@ -34,7 +34,8 @@ Each case produces a differently structured JSON object, and so in order to prev
 ### Case: Valid Input
 #### Word: "Large"
 
-'[
+```
+[
     {
         "meta": {
             "metadata irrelevant to project here"
@@ -52,9 +53,16 @@ Each case produces a differently structured JSON object, and so in order to prev
     {
         // ...more random objects here
     }
-]'
+]
+```
 
+In short, to access the *syns* (synonyms) key, indexing would follow the following format:
 
-In short, to access the "syns" (synonyms) key, indexing would follow the following format:
+`data[0][0].meta.syns[0][index]`
 
-`data[0].meta.syns[0][index]`
+## Unresolved Issues:
+
+Aside from the webpage having CSS styling yet lacking "style" (it doesn't look all that pretty), input-checkbox html elements are resistant to CSS styling. After all the coloring and images have been added, the checkboxes are tiny and difficult to see and click. Most of what I was able to find online seem to indicate that that preferred method is to create checkbox replacements altogether:
+
+<https://www.w3schools.com/howto/howto_css_custom_checkbox.asp>
+<https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css>
